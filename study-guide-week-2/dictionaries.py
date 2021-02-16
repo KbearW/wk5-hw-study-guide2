@@ -55,40 +55,61 @@ def without_duplicates(words):
 
 
 
-# def find_unique_common_items(items1, items2):
-#     """Produce the set of *unique* common items in two lists.
+def find_unique_common_items(items1, items2):
+    """Produce the set of *unique* common items in two lists.
 
-#     Given two lists, return a set of the *unique* common items
-#     shared between the lists.
+    Given two lists, return a set of the *unique* common items
+    shared between the lists.
 
-#     **IMPORTANT**: you may not use `'if ___ in ___``
-#     or the method `list.index()`.
+    **IMPORTANT**: you may not use `'if ___ in ___``
+    or the method `list.index()`.
 
-#     This should return a set:
+    This should return a set:
 
-#         >>> unique_common_items = find_unique_common_items([1, 2, 3, 4], [2, 1])
-#         >>> isinstance(unique_common_items, set)
-#         True
+        >>> unique_common_items = find_unique_common_items([1, 2, 3, 4], [2, 1])
+        >>> isinstance(unique_common_items, set)
+        True
 
-#     This should find [1, 2]:
+    This should find [1, 2]:
 
-#         >>> sorted(find_unique_common_items([1, 2, 3, 4], [2, 1]))
-#         [1, 2]
+        >>> sorted(find_unique_common_items([1, 2, 3, 4], [2, 1]))
+        [1, 2]
 
-#     However, now we only want unique items, so for these lists,
-#     don't show more than 1 or 2 once:
+    However, now we only want unique items, so for these lists,
+    don't show more than 1 or 2 once:
 
-#         >>> sorted(find_unique_common_items([3, 2, 1], [1, 1, 2, 2]))
-#         [1, 2]
+        >>> sorted(find_unique_common_items([3, 2, 1], [1, 1, 2, 2]))
+        [1, 2]
 
-#     The elements should not be treated as duplicates if they are
-#     different data types:
+    The elements should not be treated as duplicates if they are
+    different data types:
 
-#         >>> sorted(find_unique_common_items(["2", "1", 2], [2, 1]))
-#         [2]
-#     """
+        >>> sorted(find_unique_common_items(["2", "1", 2], [2, 1]))
+        [2]
+    """
+    # Method 1
+    # items1 = set(items1)
+    # items2 = set(items2)
 
-#     return []
+    # print(set([items1 & items2]))
+    # print(set([item for item in set(items1) & set(items2)]))
+
+    # Method 2
+    # Sudo- answer needs to be as a set- the first test tested for it.
+        # Hance: the first set([]) operation- it MUST have two sets of ()
+        # The result will be in regular []
+    # Need to switch list to set in order to use set operations: 
+            # Union:            items1 | items2
+            # Intersection:     items1 & items2
+            # Not intersection: items1 ^ items2
+            # Diff:             items1 - items2 or items2 - items1
+    
+    # This will return a list:
+    # print(([item for item in set(items1) & set(items2)]))
+    # This will return a set:
+    # print((set([item for item in set(items1) & set(items2)])))
+    
+    return (set([item for item in set(items1) & set(items2)]))
 
 
 # def get_sum_zero_pairs(numbers):
@@ -118,35 +139,75 @@ def without_duplicates(words):
 #         [[-1, 1], [0, 0]]
 #     """
 
-#     return []
-
-
-# def top_chars(phrase):
-#     """Find most common character(s) in string.
-
-#     Given an input string, return a list of character(s) which
-#     appear(s) the most in the input string.
-
-#     If there is a tie, the order of the characters in the returned
-#     list should be alphabetical.
-
-#     For example:
-
-#         >>> top_chars("The rain in spain stays mainly in the plain.")
-#         ['i', 'n']
-
-#     If there is not a tie, simply return a list with one item.
-
-#     For example:
-
-#         >>> top_chars("Shake it off, shake it off.")
-#         ['f']
-
-#     Do not count spaces, but count all other characters.
-
-#     """
+#     # Sudo: 
+#     # create an empty list 
+#     # find unique values only by changing the type to set()
+#     # Append the pair to the list as a nested collection
+#     # return sorted list within a list for all pairs - abs() related
 
 #     return []
+
+
+def top_chars(phrase):
+    """Find most common character(s) in string.
+
+    Given an input string, return a list of character(s) which
+    appear(s) the most in the input string.
+
+    If there is a tie, the order of the characters in the returned
+    list should be alphabetical.
+
+    For example:
+
+        >>> top_chars("The rain in spain stays mainly in the plain.")
+        ['i', 'n']
+
+    If there is not a tie, simply return a list with one item.
+
+    For example:
+
+        >>> top_chars("Shake it off, shake it off.")
+        ['f']
+
+    Do not count spaces, but count all other characters.
+
+    """
+    # Sudo
+    # create a dict w each char and the count- key, value pair!
+    # sort the dict by value... use .items/ .values pair
+    # return the list of char appears the most by using .keys()
+
+    counts = {}
+    # phrase = phrase.split(' ')
+    list1 = []
+    phrase = list(phrase)
+    # print(phrase)
+    # print(type(phrase))
+    
+    for letter in (phrase):
+        counts[letter] = counts.get(letter, 0) + 1
+
+    # print(counts)
+    del counts[' ']
+    del counts['.']
+    # print(counts)
+
+    for k, v in counts.items():
+        newtup = (v, k)
+        list1.append(newtup)
+    
+    list1 = sorted(list1, reverse = True)
+    print(list1)
+
+    # for k in list1:
+    print(max(int(list1[k])))
+
+    for v, k in list1[:1]:
+        return([k])
+
+
+
+    # return []
 
 #####################################################################
 # You can ignore everything below this.
