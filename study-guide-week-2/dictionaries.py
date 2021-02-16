@@ -41,102 +41,112 @@ def without_duplicates(words):
         >>> type(without_duplicates([111111, 2, 33333, 2]))
         <class 'list'>
     """
+    # Method 1
+    # set_words = set(words)
+    # new_list = []
 
-    return []
+    # for word in set_words:
+    #     new_list.append(word)
 
+    # return new_list
 
-def find_unique_common_items(items1, items2):
-    """Produce the set of *unique* common items in two lists.
-
-    Given two lists, return a set of the *unique* common items
-    shared between the lists.
-
-    **IMPORTANT**: you may not use `'if ___ in ___``
-    or the method `list.index()`.
-
-    This should return a set:
-
-        >>> unique_common_items = find_unique_common_items([1, 2, 3, 4], [2, 1])
-        >>> isinstance(unique_common_items, set)
-        True
-
-    This should find [1, 2]:
-
-        >>> sorted(find_unique_common_items([1, 2, 3, 4], [2, 1]))
-        [1, 2]
-
-    However, now we only want unique items, so for these lists,
-    don't show more than 1 or 2 once:
-
-        >>> sorted(find_unique_common_items([3, 2, 1], [1, 1, 2, 2]))
-        [1, 2]
-
-    The elements should not be treated as duplicates if they are
-    different data types:
-
-        >>> sorted(find_unique_common_items(["2", "1", 2], [2, 1]))
-        [2]
-    """
-
-    return set()
+    # Method 2
+    return [word for word in set(words)]
 
 
-def get_sum_zero_pairs(numbers):
-    """Given list of numbers, return list of pairs summing to 0.
 
-    Given a list of numbers, add up each individual pair of numbers.
-    Return a list of each pair of numbers that adds up to 0.
+# def find_unique_common_items(items1, items2):
+#     """Produce the set of *unique* common items in two lists.
 
-    For example:
+#     Given two lists, return a set of the *unique* common items
+#     shared between the lists.
 
-        >>> sort_pairs( get_sum_zero_pairs([1, 2, 3, -2, -1]) )
-        [[-2, 2], [-1, 1]]
+#     **IMPORTANT**: you may not use `'if ___ in ___``
+#     or the method `list.index()`.
 
-        >>> sort_pairs( get_sum_zero_pairs([3, -3, 2, 1, -2, -1]) )
-        [[-3, 3], [-2, 2], [-1, 1]]
+#     This should return a set:
 
-    This should always be a unique list, even if there are
-    duplicates in the input list:
+#         >>> unique_common_items = find_unique_common_items([1, 2, 3, 4], [2, 1])
+#         >>> isinstance(unique_common_items, set)
+#         True
 
-        >>> sort_pairs( get_sum_zero_pairs([1, 2, 3, -2, -1, 1, 1]) )
-        [[-2, 2], [-1, 1]]
+#     This should find [1, 2]:
 
-    Of course, if there are one or more zeros to pair together,
-    that's fine, too (even a single zero can pair with itself):
+#         >>> sorted(find_unique_common_items([1, 2, 3, 4], [2, 1]))
+#         [1, 2]
 
-        >>> sort_pairs( get_sum_zero_pairs([1, 3, -1, 1, 1, 0]) )
-        [[-1, 1], [0, 0]]
-    """
+#     However, now we only want unique items, so for these lists,
+#     don't show more than 1 or 2 once:
 
-    return []
+#         >>> sorted(find_unique_common_items([3, 2, 1], [1, 1, 2, 2]))
+#         [1, 2]
+
+#     The elements should not be treated as duplicates if they are
+#     different data types:
+
+#         >>> sorted(find_unique_common_items(["2", "1", 2], [2, 1]))
+#         [2]
+#     """
+
+#     return []
 
 
-def top_chars(phrase):
-    """Find most common character(s) in string.
+# def get_sum_zero_pairs(numbers):
+#     """Given list of numbers, return list of pairs summing to 0.
 
-    Given an input string, return a list of character(s) which
-    appear(s) the most in the input string.
+#     Given a list of numbers, add up each individual pair of numbers.
+#     Return a list of each pair of numbers that adds up to 0.
 
-    If there is a tie, the order of the characters in the returned
-    list should be alphabetical.
+#     For example:
 
-    For example:
+#         >>> sort_pairs( get_sum_zero_pairs([1, 2, 3, -2, -1]) )
+#         [[-2, 2], [-1, 1]]
 
-        >>> top_chars("The rain in spain stays mainly in the plain.")
-        ['i', 'n']
+#         >>> sort_pairs( get_sum_zero_pairs([3, -3, 2, 1, -2, -1]) )
+#         [[-3, 3], [-2, 2], [-1, 1]]
 
-    If there is not a tie, simply return a list with one item.
+#     This should always be a unique list, even if there are
+#     duplicates in the input list:
 
-    For example:
+#         >>> sort_pairs( get_sum_zero_pairs([1, 2, 3, -2, -1, 1, 1]) )
+#         [[-2, 2], [-1, 1]]
 
-        >>> top_chars("Shake it off, shake it off.")
-        ['f']
+#     Of course, if there are one or more zeros to pair together,
+#     that's fine, too (even a single zero can pair with itself):
 
-    Do not count spaces, but count all other characters.
+#         >>> sort_pairs( get_sum_zero_pairs([1, 3, -1, 1, 1, 0]) )
+#         [[-1, 1], [0, 0]]
+#     """
 
-    """
+#     return []
 
-    return []
+
+# def top_chars(phrase):
+#     """Find most common character(s) in string.
+
+#     Given an input string, return a list of character(s) which
+#     appear(s) the most in the input string.
+
+#     If there is a tie, the order of the characters in the returned
+#     list should be alphabetical.
+
+#     For example:
+
+#         >>> top_chars("The rain in spain stays mainly in the plain.")
+#         ['i', 'n']
+
+#     If there is not a tie, simply return a list with one item.
+
+#     For example:
+
+#         >>> top_chars("Shake it off, shake it off.")
+#         ['f']
+
+#     Do not count spaces, but count all other characters.
+
+#     """
+
+#     return []
 
 #####################################################################
 # You can ignore everything below this.
