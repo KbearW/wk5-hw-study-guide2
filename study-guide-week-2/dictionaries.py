@@ -113,40 +113,62 @@ def find_unique_common_items(items1, items2):
 
 
 # def get_sum_zero_pairs(numbers):
-#     """Given list of numbers, return list of pairs summing to 0.
+    """Given list of numbers, return list of pairs summing to 0.
 
-#     Given a list of numbers, add up each individual pair of numbers.
-#     Return a list of each pair of numbers that adds up to 0.
+    Given a list of numbers, add up each individual pair of numbers.
+    Return a list of each pair of numbers that adds up to 0.
 
-#     For example:
+    For example:
 
-#         >>> sort_pairs( get_sum_zero_pairs([1, 2, 3, -2, -1]) )
-#         [[-2, 2], [-1, 1]]
+        >>> sort_pairs( get_sum_zero_pairs([1, 2, 3, -2, -1]) )
+        [[-2, 2], [-1, 1]]
 
-#         >>> sort_pairs( get_sum_zero_pairs([3, -3, 2, 1, -2, -1]) )
-#         [[-3, 3], [-2, 2], [-1, 1]]
+        >>> sort_pairs( get_sum_zero_pairs([3, -3, 2, 1, -2, -1]) )
+        [[-3, 3], [-2, 2], [-1, 1]]
 
-#     This should always be a unique list, even if there are
-#     duplicates in the input list:
+    This should always be a unique list, even if there are
+    duplicates in the input list:
 
-#         >>> sort_pairs( get_sum_zero_pairs([1, 2, 3, -2, -1, 1, 1]) )
-#         [[-2, 2], [-1, 1]]
+        >>> sort_pairs( get_sum_zero_pairs([1, 2, 3, -2, -1, 1, 1]) )
+        [[-2, 2], [-1, 1]]
 
-#     Of course, if there are one or more zeros to pair together,
-#     that's fine, too (even a single zero can pair with itself):
+    Of course, if there are one or more zeros to pair together,
+    that's fine, too (even a single zero can pair with itself):
 
-#         >>> sort_pairs( get_sum_zero_pairs([1, 3, -1, 1, 1, 0]) )
-#         [[-1, 1], [0, 0]]
-#     """
+        >>> sort_pairs( get_sum_zero_pairs([1, 3, -1, 1, 1, 0]) )
+        [[-1, 1], [0, 0]]
+    """
 
-#     # Sudo: 
-#     # create an empty list 
-#     # find unique values only by changing the type to set()
-#     # Append the pair to the list as a nested collection
-#     # return sorted list within a list for all pairs - abs() related
+    # Sudo: 
+    # create an empty list 
+    # find unique values only by changing the type to set()
+    # Append the pair to the list as a nested collection
+    # return sorted list within a list for all pairs - abs() related
 
-#     return []
+    # result =[]
+    # numbers = set([numbers])
+    
+    # for x in numbers:
+    #     if -x in numbers:
+    #         numbers_new.append([-x , x])
+    # print(numbers_new)
+    # return numbers_new
 
+    # # Method 1
+    # result = []
+    # s = set(numbers)
+
+    # for x in s:
+    #     if x >= 0 and -x in s:
+    #         result.append([-x,x])
+
+    # return result
+
+    # # Method 2
+    # s = set(numbers)
+    # return [[-x,x] for x in s if x >= 0 and -x in s]
+
+    # More methods in the solution
 
 def top_chars(phrase):
     """Find most common character(s) in string.
@@ -177,46 +199,46 @@ def top_chars(phrase):
     # sort the dict by value... use .items/ .values pair
     # return the list of char appears the most by using .keys()
 
-    counts = {}
-    # phrase = phrase.split(' ')
-    list1 = []
-    phrase = list(phrase)
-    # print(phrase)
-    # print(type(phrase))
+    tuples_list = []
+    char_dict = {}
+    results =[]
+
+    # Iterate over each char in the phrase and put them in a dict
+    for char in phrase:
+        if char !=  " ":
+            char_dict[char] = char_dict.get(char, 0) + 1
+
+    # Flip the k,v pairs to a tuple for sorting
+    for char, value in char_dict.items():
+        pair_tuple = (value, char)
+        tuples_list.append(pair_tuple)
     
-    for letter in (phrase):
-        counts[letter] = counts.get(letter, 0) + 1
-
-    # print(counts)
-    del counts[' ']
-    del counts['.']
-    # print(counts)
-
-    for k, v in counts.items():
-        newtup = (v, k)
-        list1.append(newtup)
+    # Sorted function reqs a new variable 
+    sort_tuples_list = sorted(tuples_list, reverse = True)
     
-    list1 = sorted(list1, reverse = True)
-    print(list1)
+    # Set "biggest" as the pair_tuple[0] == the value
+    # Note the property of how to call index of tuples:
+    # >>> fruit = ('ripe', 'Red Delicious')
+    # >>> fruit[0]
+    # 'ripe' (For notes: look up collection & dict lectures)
+    biggest = sort_tuples_list[0][0]
+    
+    # 
+    for pair_tuple in sort_tuples_list:
+        if pair_tuple[0] == biggest:
+            results.append(pair_tuple[1])
+    # print(sorted(results))
 
-    # for k in list1:
-    print(max(int(list1[k])))
+    return sorted(results)
 
-    for v, k in list1[:1]:
-        return([k])
-
-
-
-    # return []
-
-#####################################################################
+####################################################################
 # You can ignore everything below this.
 
 
-def sort_pairs(l):
-    # Print sorted list of pairs where the pairs are sorted. This is
-    # used only for documentation tests. You can ignore it.
-    return sorted(sorted(pair) for pair in l)
+# def sort_pairs(l):
+#     # Print sorted list of pairs where the pairs are sorted. This is
+#     # used only for documentation tests. You can ignore it.
+#     return sorted(sorted(pair) for pair in l)
 
 
 if __name__ == "__main__":
